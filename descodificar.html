@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descodificador Base64</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        textarea { width: 90%; height: 300px; margin-bottom: 10px; }
+        button { padding: 10px 20px; cursor: pointer; }
+        #resultado { margin-top: 20px; font-weight: bold; white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <h1>Descodificador Base64</h1>
+    <textarea id="texto" placeholder="Introduce tu texto codificado en Base64 aquí..."></textarea><br>
+    <button onclick="descodificar()">Descodificar</button>
+    <div id="resultado"></div>
+    <script>
+        function descodificar() {
+            const texto = document.getElementById('texto').value.trim();
+            const lineas = texto.split("\n"); // Dividir el texto en líneas
+            let resultado = "";
+
+            for (let linea of lineas) {
+                try {
+                    // Descodificar cada línea y agregarla al resultado
+                    resultado += atob(linea.trim()) + "\n";
+                } catch (e) {
+                    // Si ocurre un error, agregar un mensaje de error
+                    resultado += `Error al descodificar: ${linea}\n`;
+                }
+            }
+
+            // Mostrar el resultado descodificado en el div
+            document.getElementById('resultado').innerText = resultado;
+        }
+    </script>
+</body>
+</html>
